@@ -27,3 +27,15 @@ spec:
             requests:
               cpu: "100m"
               memory: "64Mi"
+
+
+
+
+
+topologyKey: kubernetes.io/hostname
+
+means:
+
+Spread the Pods across different nodes.
+
+maxSkew: 1 means: The difference in Pod count between nodes should not exceed 1.
