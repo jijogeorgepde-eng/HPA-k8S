@@ -1,1 +1,29 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spread-demo
+  namespace: jfoods
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: spread-demo
+  template:
+    metadata:
+      labels:
+        app: spread-demo
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: spread-demo
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
