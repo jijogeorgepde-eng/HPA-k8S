@@ -27,3 +27,45 @@ spec:
             requests:
               cpu: "100m"
               memory: "64Mi"
+
+
+
+
+
+
+
+
+
+
+Why DoNotSchedule?
+
+This is important.
+
+# whenUnsatisfiable: DoNotSchedule
+
+means:
+
+If Kubernetes cannot maintain the distribution requirement, don't schedule the new Pod.
+
+So Kubernetes would rather leave a Pod Pending than violate the rule.
+
+There is also:
+
+# whenUnsatisfiable: ScheduleAnyway
+
+which means:
+
+Try to spread the Pods, but schedule anyway if perfect distribution isn't possible.
+
+
+# topologyKey:
+
+kubernetes.io/hostname
+
+means:
+
+Spread the Pods across different nodes.
+
+# maxSkew: 1 means:
+
+The difference in Pod count between nodes should not exceed 1.
